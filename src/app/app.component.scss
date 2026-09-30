@@ -1,0 +1,43 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+
+
+h1 {
+  margin-bottom: 0.75rem;
+}
+
+.content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.card,
+aside {
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.card {
+  flex: 2;
+}
+
+aside {
+  flex: 1;
+}
+
+.card h2,
+aside h2 {
+  margin-top: 0;
+}
+
+footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
