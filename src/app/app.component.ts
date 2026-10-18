@@ -8,5 +8,6 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
 })
 export class App {
-  protected readonly title = signal('ioc-angular-tasques-joan-david-mas-baga-romero');
+  protected readonly title = signal('Gestor de tasques');
+  public nomApp=  "Gestor de tasques";
 }
