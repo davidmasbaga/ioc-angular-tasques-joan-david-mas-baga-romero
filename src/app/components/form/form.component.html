@@ -1,0 +1,14 @@
+
+<form (ngSubmit)="aplicarFiltre()">
+  <label for="categoria">Categoria:</label>
+
+  <select id="categoria" name="categoria" [(ngModel)]="categoria">
+    <option value="">Totes</option>
+    <option value="Estudis">Estudis</option>
+    <option value="Feina">Feina</option>
+    <option value="Salut">Salut</option>
+    <option value="Personal">Personal</option>
+  </select>
+
+  <button type="submit">Filtrar</button>
+</form>
