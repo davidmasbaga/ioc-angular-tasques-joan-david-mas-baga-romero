@@ -1,0 +1,27 @@
+
+<article class="card">
+  <h2>{{ tasca.nom }}</h2>
+  
+    
+  <app-tag [categoria]="tasca.categoria"></app-tag>
+
+  <p>
+    <strong>Descripción:</strong>
+    {{ tasca.descripcio }}
+  </p>
+
+  <p>
+    <strong>Fecha:</strong>
+    {{ tasca.data | date:'dd/MM/yyyy' }}
+  </p>
+
+  <p>
+    <strong>Prioridad:</strong>
+    {{ tasca.prioritat }}/3
+  </p>
+
+  <p>
+    <strong>Recurrent:</strong>
+    {{ tasca.recurrent ? 'Sí' : 'No' }}
+  </p>
+</article>
