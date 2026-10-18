@@ -1,0 +1,10 @@
+
+<section class="llista">
+  <h1>Les meves tasques</h1>
+
+  <app-form (filtrar)="filtre($event)"></app-form>
+
+  @for (tasca of tasquesFiltrades; track tasca.id) {
+    <app-card [tasca]="tasca"></app-card>
+  }
+</section>
