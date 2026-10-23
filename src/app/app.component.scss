@@ -5,6 +5,23 @@
   font-family: Arial, sans-serif;
 }
 
+.enllac-salt {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 10;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  color: #1a365d;
+  border: 2px solid #1a365d;
+  border-radius: 4px;
+  transform: translateY(-150%);
+}
+
+.enllac-salt:focus {
+  transform: translateY(0);
+}
+
 
 
 h1 {
@@ -40,4 +57,21 @@ aside h2 {
 footer {
   margin-top: 2rem;
   padding-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .card,
+  aside {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }

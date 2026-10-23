@@ -4,7 +4,9 @@
 
   <app-form (filtrar)="filtre($event)"></app-form>
 
-  <p class="comptador">{{ tasquesFiltrades.length }} resultats trobats</p>
+  <p class="comptador" role="status" aria-live="polite">
+    {{ tasquesFiltrades.length }} resultats trobats
+  </p>
 
   @if (tasquesFiltrades.length > 0) {
     <div class="contingut-llista">

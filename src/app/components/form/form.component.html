@@ -10,7 +10,8 @@
       required
       minlength="3"
       #textCerca="ngModel"
-      aria-describedby="text-ajuda text-error"
+      [attr.aria-describedby]="textCerca.invalid && textCerca.touched ? 'text-ajuda text-error' : 'text-ajuda'"
+      [attr.aria-invalid]="textCerca.invalid && textCerca.touched"
     />
     <small id="text-ajuda">Escriu com a mínim 3 caràcters.</small>
     @if (textCerca.invalid && textCerca.touched && textCerca.errors?.['minlength']) {

@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estils globals */
+
+:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
+}
+  
