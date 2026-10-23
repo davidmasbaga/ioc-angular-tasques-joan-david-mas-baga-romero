@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Tag } from '../tag/tag.component';
 import { Tasca } from '../../models/tasca.model';
-import { TASQUES_MOCK } from '../../data/tasques.mock';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -11,7 +10,12 @@ import { DatePipe } from '@angular/common';
   templateUrl: './card.component.html',
 })
 export class Card {
-  @Input()
-  tasca!: Tasca;
+  @Input({ required: true }) tasca!: Tasca;
+  @Input() seleccionada = false;
+  @Output() seleccionar = new EventEmitter<Tasca>();
 
+  veureDetall(): void {
+        this.seleccionar.emit(this.tasca);
+  }
+  
 }

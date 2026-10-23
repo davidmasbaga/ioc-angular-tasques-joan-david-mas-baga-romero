@@ -1,5 +1,5 @@
 
-<article class="card">
+<article class="card" [class.seleccionada]="seleccionada">
   <h2>{{ tasca.nom }}</h2>
   
     
@@ -24,4 +24,6 @@
     <strong>Recurrent:</strong>
     {{ tasca.recurrent ? 'Sí' : 'No' }}
   </p>
+
+  <button type="button" (click)="veureDetall()">Veure detall</button>
 </article>

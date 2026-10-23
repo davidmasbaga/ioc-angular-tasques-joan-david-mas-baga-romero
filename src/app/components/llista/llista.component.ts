@@ -14,7 +14,9 @@ export class Llista {
  @Input() titol = 'Llista d’elements';
   text = '';
   categoria = '';
+  tascaSeleccionada?: Tasca;
 
+ 
 
  get tasquesFiltrades(){
   
@@ -25,7 +27,7 @@ export class Llista {
         || tasca.nom.toLocaleLowerCase().includes(textNormalitzat)
         || tasca.descripcio.toLocaleLowerCase().includes(textNormalitzat);
       const coincideixCategoria = !this.categoria || tasca.categoria === this.categoria;
-
+      
       return coincideixText && coincideixCategoria;
     });
   
@@ -36,6 +38,17 @@ export class Llista {
   filtre(filtres: FiltresTasques): void {
     this.text = filtres.text;
     this.categoria = filtres.categoria;
+    this.tascaSeleccionada = undefined;
+  }
+
+  seleccionarTasca(tasca: Tasca): void {
+    console.log(tasca)
+     this.tascaSeleccionada = tasca;
+  }
+
+  
+  tancarDetall(): void {
+    this.tascaSeleccionada = undefined;
   }
 
 }
