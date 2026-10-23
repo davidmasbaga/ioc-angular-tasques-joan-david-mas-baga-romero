@@ -1,14 +1,41 @@
 
-<form (ngSubmit)="aplicarFiltre()">
-  <label for="categoria">Categoria:</label>
+<form #formulari="ngForm" (ngSubmit)="aplicarFiltre()" novalidate>
+  <div class="camp-formulari">
+    <label for="text">Text de cerca:</label>
+    <input
+      id="text"
+      type="search"
+      name="text"
+      [(ngModel)]="text"
+      required
+      minlength="3"
+      #textCerca="ngModel"
+      aria-describedby="text-ajuda text-error"
+    />
+    <small id="text-ajuda">Escriu com a mínim 3 caràcters.</small>
+    @if (textCerca.invalid && textCerca.touched && textCerca.errors?.['minlength']) {
+      <p id="text-error" class="error" role="alert">
+        El text de cerca ha de tenir com a mínim 3 caràcters.
+      </p>
+    }
+  </div>
 
-  <select id="categoria" name="categoria" [(ngModel)]="categoria">
-    <option value="">Totes</option>
-    <option value="Estudis">Estudis</option>
-    <option value="Feina">Feina</option>
-    <option value="Salut">Salut</option>
-    <option value="Personal">Personal</option>
-  </select>
+  <div class="camp-formulari">
+    <label for="categoria">Categoria:</label>
+    <select id="categoria" name="categoria" [(ngModel)]="categoria">
+      <option value="">Totes</option>
+      <option value="Estudis">Estudis</option>
+      <option value="Feina">Feina</option>
+      <option value="Salut">Salut</option>
+      <option value="Personal">Personal</option>
+      <option value="Oci">Oci</option>
+      <option value="Casa">Casa</option>
+      <option value="Organització">Organització</option>
+    </select>
+  </div>
 
-  <button type="submit">Filtrar</button>
+  <div class="accions">
+    <button type="submit" [disabled]="formulari.invalid">Aplicar filtres</button>
+    <button type="button" (click)="restablir()">Restablir filtres</button>
+  </div>
 </form>

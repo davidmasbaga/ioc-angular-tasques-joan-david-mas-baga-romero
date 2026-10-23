@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { TASQUES_MOCK } from '../../data/tasques.mock';
 import { Card } from '../card/card.component';
 import { Tasca } from '../../models/tasca.model';
-import { Form } from '../form/form.component';
+import { FiltresTasques, Form } from '../form/form.component';
 
 @Component({
   imports: [Card, Form],
@@ -13,20 +12,30 @@ import { Form } from '../form/form.component';
 export class Llista {
  @Input() elements: Tasca[] = [];
  @Input() titol = 'Llista d’elements';
- categoria="";
+  text = '';
+  categoria = '';
 
 
  get tasquesFiltrades(){
   
-  return this.elements.filter(tasca=> !this.categoria || tasca.categoria === this.categoria);
+    const textNormalitzat = this.text.toLocaleLowerCase();
+
+    return this.elements.filter((tasca) => {
+      const coincideixText = !textNormalitzat
+        || tasca.nom.toLocaleLowerCase().includes(textNormalitzat)
+        || tasca.descripcio.toLocaleLowerCase().includes(textNormalitzat);
+      const coincideixCategoria = !this.categoria || tasca.categoria === this.categoria;
+
+      return coincideixText && coincideixCategoria;
+    });
   
  }
 
  
 
- filtre(categoria:string){
-  this.categoria =categoria;
-
- }
+  filtre(filtres: FiltresTasques): void {
+    this.text = filtres.text;
+    this.categoria = filtres.categoria;
+  }
 
 }
