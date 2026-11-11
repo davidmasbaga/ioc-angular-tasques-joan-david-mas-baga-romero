@@ -1,0 +1,94 @@
+{
+  "tasques": [
+    {
+      "id": "tasca-001",
+      "nom": "Estudiar Angular",
+      "descripcio": "Repassar components, serveis i injectors per a l'EAC.",
+      "categoria": "Estudis",
+      "data": "2026-11-12",
+      "prioritat": 3,
+      "recurrent": true
+    },
+    {
+      "id": "tasca-002",
+      "nom": "Preparar l'entrega EAC3",
+      "descripcio": "Revisar les evidències i la documentació del projecte.",
+      "categoria": "Estudis",
+      "data": "2026-11-15",
+      "prioritat": 3,
+      "recurrent": false
+    },
+    {
+      "id": "tasca-003",
+      "nom": "Fer exercici",
+      "descripcio": "Sessió d'entrenament al gimnàs.",
+      "categoria": "Salut",
+      "data": "2026-11-12",
+      "prioritat": 2,
+      "recurrent": true
+    },
+    {
+      "id": "tasca-004",
+      "nom": "Comprar aliments",
+      "descripcio": "Comprar fruita, verdura i productes per a la setmana.",
+      "categoria": "Personal",
+      "data": "2026-11-13",
+      "prioritat": 2,
+      "recurrent": true
+    },
+    {
+      "id": "tasca-005",
+      "nom": "Respondre correus pendents",
+      "descripcio": "Llegir i respondre els missatges importants.",
+      "categoria": "Feina",
+      "data": "2026-11-12",
+      "prioritat": 1,
+      "recurrent": true
+    },
+    {
+      "id": "tasca-006",
+      "nom": "Llegir un llibre",
+      "descripcio": "Llegir durant trenta minuts abans de dormir.",
+      "categoria": "Oci",
+      "data": "2026-11-14",
+      "prioritat": 1,
+      "recurrent": true
+    },
+    {
+      "id": "tasca-007",
+      "nom": "Preparar una reunió",
+      "descripcio": "Organitzar els punts que cal tractar amb l'equip.",
+      "categoria": "Feina",
+      "data": "2026-11-14",
+      "prioritat": 3,
+      "recurrent": false
+    },
+    {
+      "id": "tasca-008",
+      "nom": "Ordenar l'habitació",
+      "descripcio": "Endreçar l'escriptori i els armaris.",
+      "categoria": "Casa",
+      "data": "2026-11-16",
+      "prioritat": 2,
+      "recurrent": false
+    },
+    {
+      "id": "tasca-009",
+      "nom": "Fer una passejada",
+      "descripcio": "Caminar a l'aire lliure durant quaranta minuts.",
+      "categoria": "Salut",
+      "data": "2026-11-13",
+      "prioritat": 1,
+      "recurrent": true
+    },
+    {
+      "id": "tasca-010",
+      "nom": "Planificar la setmana",
+      "descripcio": "Organitzar les tasques i els terminis de la setmana següent.",
+      "categoria": "Organització",
+      "data": "2026-11-16",
+      "prioritat": 3,
+      "recurrent": true
+    }
+  ]
+}
