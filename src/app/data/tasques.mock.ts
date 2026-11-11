@@ -4,7 +4,7 @@ import {Tasca} from "../models/tasca.model"
 export const TASQUES_MOCK: Tasca[] = [
 
 {
-    id: 1,
+    id: 'tasca-001',
     nom: 'Estudiar Angular',
     descripcio: 'Repassar els components i els serveis',
     categoria: 'Estudis',
@@ -13,7 +13,7 @@ export const TASQUES_MOCK: Tasca[] = [
     recurrent: true
   },
   {
-    id: 2,
+    id: 'tasca-002',
     nom: 'Fer exercici',
     descripcio: 'Sessió entrenament al gimnàs',
     categoria: 'Salut',
@@ -22,7 +22,7 @@ export const TASQUES_MOCK: Tasca[] = [
     recurrent: true
   },
   {
-    id: 3,
+    id: 'tasca-003',
     nom: 'Comprar aliments',
     descripcio: 'Comprar fruita, verdura i altres aliments',
     categoria: 'Personal',
@@ -31,7 +31,7 @@ export const TASQUES_MOCK: Tasca[] = [
     recurrent: true
   },
   {
-    id: 4,
+    id: 'tasca-004',
     nom: 'Lliurar EAC2',
     descripcio: 'Revisar el model i les dades mock',
     categoria: 'Estudis',
@@ -40,7 +40,7 @@ export const TASQUES_MOCK: Tasca[] = [
     recurrent: false
   },
   {
-    id: 5,
+    id: 'tasca-005',
     nom: 'Revisar el correu',
     descripcio: 'Llegir i respondre els missatges pendents',
     categoria: 'Feina',
@@ -49,7 +49,7 @@ export const TASQUES_MOCK: Tasca[] = [
     recurrent: true
   },
   {
-    id: 6,
+    id: 'tasca-006',
     nom: 'Llegir un llibre',
     descripcio: 'Llegir durant trenta minuts',
     categoria: 'Oci',
@@ -58,7 +58,7 @@ export const TASQUES_MOCK: Tasca[] = [
     recurrent: true
   },
   {
-    id: 7,
+    id: 'tasca-007',
     nom: 'Preparar una reunió',
     descripcio: 'Organitzar els punts que cal tractar',
     categoria: 'Feina',
@@ -67,7 +67,7 @@ export const TASQUES_MOCK: Tasca[] = [
     recurrent: false
   },
   {
-    id: 8,
+    id: 'tasca-008',
     nom: 'Netejar lhabitació',
     descripcio: 'Ordenar lescriptori i els armaris',
     categoria: 'Casa',
@@ -76,7 +76,7 @@ export const TASQUES_MOCK: Tasca[] = [
     recurrent: true
   },
   {
-    id: 9,
+    id: 'tasca-009',
     nom: 'Fer una passejada',
     descripcio: 'Caminar a laire lliure',
     categoria: 'Salut',
@@ -85,7 +85,7 @@ export const TASQUES_MOCK: Tasca[] = [
     recurrent: true
   },
   {
-    id: 10,
+    id: 'tasca-010',
     nom: 'Planificar la setmana',
     descripcio: 'Organitzar les tasques de la setmana següent',
     categoria: 'Organització',
