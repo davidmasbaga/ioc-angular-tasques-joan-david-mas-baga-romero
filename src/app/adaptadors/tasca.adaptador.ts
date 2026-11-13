@@ -1,5 +1,5 @@
 import { TascaApiResponse } from '../models/tasca-api.model';
-import { Tasca } from '../models/tasca.model';
+import { NovaTasca, Tasca } from '../models/tasca.model';
 
 const CATEGORIES_NORMALITZADES: Record<string, string> = {
   casa: 'Casa', estudis: 'Estudis', feina: 'Feina', oci: 'Oci',
@@ -40,4 +40,15 @@ export function adaptarTascaApi(tascaApi: TascaApiResponse): Tasca {
 
 export function adaptarTasquesApi(tasquesApi: TascaApiResponse[]): Tasca[] {
   return tasquesApi.map(adaptarTascaApi);
+}
+
+export function prepararTascaApi(tasca: NovaTasca): Omit<TascaApiResponse, 'id'> {
+  return {
+    nom: textNet(tasca.nom, 'Tasca sense nom'),
+    descripcio: textNet(tasca.descripcio, 'Sense descripció'),
+    categoria: categoriaNormalitzada(tasca.categoria),
+    data: tasca.data.toISOString().slice(0, 10),
+    prioritat: prioritatSegura(tasca.prioritat),
+    recurrent: Boolean(tasca.recurrent),
+  };
 }

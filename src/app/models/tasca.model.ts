@@ -7,3 +7,13 @@ export interface Tasca {
   prioritat: number;
   recurrent: boolean;
 }
+
+export type NovaTasca = Omit<Tasca, 'id'>;
+
+export type EstatServei = 'inicial' | 'carregant' | 'exit' | 'error';
+
+export interface EstatTasques {
+  estat: EstatServei;
+  tasques: Tasca[];
+  error?: string;
+}

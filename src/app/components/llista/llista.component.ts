@@ -13,6 +13,7 @@ import { TascaService } from '../../services/tasca.service';
 export class Llista implements OnInit {
   private readonly tascaService = inject(TascaService);
 
+  readonly estat = this.tascaService.estat;
   titol = 'Les meves tasques';
   text = '';
   categoria = '';
@@ -20,7 +21,8 @@ export class Llista implements OnInit {
 
   get tasquesFiltrades(): Tasca[] {
     const textNormalitzat = this.text.toLocaleLowerCase();
-    return this.tascaService.tasques().filter((tasca) => {
+
+    return this.estat().tasques.filter((tasca) => {
       const coincideixText = !textNormalitzat
         || tasca.nom.toLocaleLowerCase().includes(textNormalitzat)
         || tasca.descripcio.toLocaleLowerCase().includes(textNormalitzat);
@@ -30,13 +32,13 @@ export class Llista implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tascaService.carregarTasques();
+    this.tascaService.carregarTot();
   }
 
   filtre(filtres: FiltresTasques): void {
+    this.tascaSeleccionada = undefined;
     this.text = filtres.text;
     this.categoria = filtres.categoria;
-    this.tascaSeleccionada = undefined;
   }
 
   seleccionarTasca(tasca: Tasca): void {
@@ -45,5 +47,9 @@ export class Llista implements OnInit {
 
   tancarDetall(): void {
     this.tascaSeleccionada = undefined;
+  }
+
+  reintentar(): void {
+    this.tascaService.reintentar();
   }
 }

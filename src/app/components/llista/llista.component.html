@@ -1,41 +1,49 @@
-
 <section class="llista">
   <h1>{{ titol }}</h1>
 
   <app-form (filtrar)="filtre($event)"></app-form>
 
-  <p class="comptador" role="status" aria-live="polite">
-    {{ tasquesFiltrades.length }} resultats trobats
-  </p>
-
-  @if (tasquesFiltrades.length > 0) {
-    <div class="contingut-llista">
-      <div class="graella-tasques">
-        @for (tasca of tasquesFiltrades; track tasca.id) {
-          <app-card
-            [tasca]="tasca"
-            [seleccionada]="tascaSeleccionada?.id === tasca.id"
-            (seleccionar)="seleccionarTasca($event)"
-          ></app-card>
-        }
+  @switch (estat().estat) {
+    @case ('carregant') {
+      <p class="missatge-estat" role="status" aria-live="polite">Carregant tasques...</p>
+    }
+    @case ('error') {
+      <div class="missatge-estat missatge-error" role="alert">
+        <p>{{ estat().error }}</p>
+        <button type="button" (click)="reintentar()">Reintentar</button>
       </div>
+    }
+    @case ('exit') {
+      <p class="comptador" role="status" aria-live="polite">
+        {{ tasquesFiltrades.length }} resultats trobats
+      </p>
 
-      @if (tascaSeleccionada) {
-        <aside class="detall">
-          <h2>Detall de la tasca</h2>
-          <h3>{{ tascaSeleccionada.nom }}</h3>
-          <p>{{ tascaSeleccionada.descripcio }}</p>
-          <p><strong>Categoria:</strong> {{ tascaSeleccionada.categoria }}</p>
-          <p><strong>Prioritat:</strong> {{ tascaSeleccionada.prioritat }}/3</p>
-          <button type="button" (click)="tancarDetall()">Tancar detall</button>
-        </aside>
+      @if (tasquesFiltrades.length > 0) {
+        <div class="contingut-llista">
+          <div class="graella-tasques">
+            @for (tasca of tasquesFiltrades; track tasca.id) {
+              <app-card [tasca]="tasca" [seleccionada]="tascaSeleccionada?.id === tasca.id" (seleccionar)="seleccionarTasca($event)"></app-card>
+            }
+          </div>
+
+          @if (tascaSeleccionada) {
+            <aside class="detall">
+              <h2>Detall de la tasca</h2>
+              <h3>{{ tascaSeleccionada.nom }}</h3>
+              <p>{{ tascaSeleccionada.descripcio }}</p>
+              <p><strong>Categoria:</strong> {{ tascaSeleccionada.categoria }}</p>
+              <p><strong>Prioritat:</strong> {{ tascaSeleccionada.prioritat }}/3</p>
+              <button type="button" (click)="tancarDetall()">Tancar detall</button>
+            </aside>
+          } @else {
+            <aside class="detall detall-buit">
+              <p>Selecciona una tasca per veure'n el detall.</p>
+            </aside>
+          }
+        </div>
       } @else {
-        <aside class="detall detall-buit">
-          <p>Selecciona una tasca per veure'n el detall.</p>
-        </aside>
+        <p class="missatge-buit">No s'ha trobat cap tasca.</p>
       }
-    </div>
-  } @else {
-    <p class="missatge-buit">No s'ha trobat cap tasca amb aquests filtres.</p>
+    }
   }
 </section>

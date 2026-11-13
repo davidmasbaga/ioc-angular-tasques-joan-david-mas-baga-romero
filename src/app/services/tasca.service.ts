@@ -1,24 +1,51 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { map } from 'rxjs';
-import { adaptarTasquesApi } from '../adaptadors/tasca.adaptador';
+import { catchError, map, Observable, of, Subject, switchMap, tap } from 'rxjs';
+import { adaptarTascaApi, adaptarTasquesApi, prepararTascaApi } from '../adaptadors/tasca.adaptador';
 import { TascaApiResponse } from '../models/tasca-api.model';
-import { Tasca } from '../models/tasca.model';
+import { EstatTasques, NovaTasca, Tasca } from '../models/tasca.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class TascaService {
   private readonly http = inject(HttpClient);
-  private readonly tasquesInternes = signal<Tasca[]>([]);
+  private readonly apiUrl = `${environment.apiUrl}/tasques`;
+  private readonly estatSignal = signal<EstatTasques>({ estat: 'inicial', tasques: [] });
+  private readonly recarregar$ = new Subject<void>();
 
-  readonly tasques = this.tasquesInternes.asReadonly();
+  readonly estat = this.estatSignal.asReadonly();
 
-  carregarTasques(): void {
-    this.http.get<TascaApiResponse[]>(`${environment.apiUrl}/tasques`).pipe(
+  private readonly recarregaSubscrita = this.recarregar$.pipe(
+    tap(() => this.estatSignal.set({ estat: 'carregant', tasques: [] })),
+    switchMap(() => this.obtenirTasques()),
+  ).subscribe((estat) => this.estatSignal.set(estat));
+
+  carregarTot(): void {
+    this.recarregar$.next();
+  }
+
+  reintentar(): void {
+    this.recarregar$.next();
+  }
+
+  crearTasca(novaTasca: NovaTasca): Observable<Tasca> {
+    return this.http.post<TascaApiResponse>(this.apiUrl, prepararTascaApi(novaTasca)).pipe(
+      map(adaptarTascaApi),
+      tap(() => this.reintentar()),
+    );
+  }
+
+  private obtenirTasques(): Observable<EstatTasques> {
+    return this.http.get<TascaApiResponse[]>(this.apiUrl).pipe(
       map(adaptarTasquesApi),
-    ).subscribe({
-      next: (tasques) => this.tasquesInternes.set(tasques),
-      error: () => this.tasquesInternes.set([]),
-    });
+      map((tasques) => ({ estat: 'exit' as const, tasques })),
+      catchError((error: HttpErrorResponse) => of({
+        estat: 'error' as const,
+        tasques: [],
+        error: error.status === 0
+          ? 'No es pot connectar amb l’API de tasques.'
+          : 'No s’han pogut carregar les tasques.',
+      })),
+    );
   }
 }
