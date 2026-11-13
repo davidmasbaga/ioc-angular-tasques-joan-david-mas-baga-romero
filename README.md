@@ -1,64 +1,41 @@
 # Gestor de tasques
 
-## Autor
+Aplicació Angular per gestionar tasques amb una API local.
 
-Joan David Mas-Bagà Romero
+## Versions
 
-## Descripció
+- Node.js 24
+- npm 11
+- Angular 22
+- Angular CLI 22
 
-Aplicació web desenvolupada amb Angular per gestionar i organitzar tasques del meu cicle formatiu
-
-## Versions utilitzades
-
-* Node.js 24
-* Angular 22
-* Angular CLI 22
-* Git
-
-## Com crear i executar el projecte
-
-Instal·lar les dependències:
+## Comandes
 
 ```bash
-npm install o npm i
-```
-
-Executar l'aplicació en mode desenvolupament:
-
-```bash
-ng serve
-```
-o també podem utilitzar 
-```bash
-npm run start
-```
-
-L'aplicació estarà disponible a `http://localhost:4200`.
-
-Altres comandes disponibles:
-
-```bash
+npm install
+npm run api
+npm start
 npm run build
 npm test
 ```
 
-## Branca de treball
+L'API s'executa a `http://localhost:4301` i l'aplicació a `http://localhost:4200`.
 
-La branca corresponent a aquesta activitat és `ra2-components`.
+## Branca
 
-## Components creats
+La branca de treball és `ra3-serveis`.
 
-- `app-form`: permet filtrar les tasques per text i categoria.
-- `app-llista`: mostra les tasques filtrades i el detall de la tasca seleccionada.
-- `app-card`: presenta la informació resumida d'una tasca i permet seleccionar-la.
-- `app-tag`: mostra visualment la categoria de cada tasca.
+## API
 
-## Accessibilitat i disseny responsive
+- Fitxer JSON: `tools/api/tasques.json`
+- Endpoint: `GET` i `POST /tasques`
+- URL base: `http://localhost:4301`
 
-- Inclou un enllaç de salt al contingut principal, focus visible en controls interactius i etiquetes associades als camps del formulari.
-- El recompte de resultats s'anuncia amb una regió d'estat i els errors de validació s'anuncien com a alertes.
-- En pantalles de `768px` o menys, les seccions de dades i el detall de tasques passen a una sola columna per evitar desbordaments.
+## Serveis
 
-## Repositori
+- `TascaService`: fa les peticions HTTP, cerca, reintenta i guarda l'estat de càrrega o error.
+- `HistorialCerquesService`: desa les cerques recents a `localStorage`.
 
-https://github.com/davidmasbaga/ioc-angular-tasques-joan-david-mas-baga-romero
+## Formulari
+
+El formulari de cerca usa `ReactiveFormsModule`, té validació mínima, validació asíncrona i historial de cerques.
