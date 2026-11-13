@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Llista } from './components/llista/llista.component';
 
 @Component({
-  imports: [RouterOutlet, Llista],
+  imports: [Llista],
   selector: 'app-root',
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',
