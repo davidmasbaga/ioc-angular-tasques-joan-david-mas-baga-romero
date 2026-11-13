@@ -15,13 +15,13 @@
     }
     @case ('exit') {
       <p class="comptador" role="status" aria-live="polite">
-        {{ tasquesFiltrades.length }} resultats trobats
+        {{ estat().tasques.length }} resultats trobats
       </p>
 
-      @if (tasquesFiltrades.length > 0) {
+      @if (estat().tasques.length > 0) {
         <div class="contingut-llista">
           <div class="graella-tasques">
-            @for (tasca of tasquesFiltrades; track tasca.id) {
+            @for (tasca of estat().tasques; track tasca.id) {
               <app-card [tasca]="tasca" [seleccionada]="tascaSeleccionada?.id === tasca.id" (seleccionar)="seleccionarTasca($event)"></app-card>
             }
           </div>

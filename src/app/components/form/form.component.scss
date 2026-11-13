@@ -9,6 +9,26 @@ form {
  
 }
 
+.formulari-cerca {
+  margin: 1rem 0;
+}
+
+.entrada {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.comprovant {
+  font-size: 0.9rem;
+  color: #52616d;
+}
+
+.netejar {
+  min-height: auto;
+  padding: 0.25rem 0.5rem;
+}
+
 .camp-formulari {
   display: flex;
   flex: 1 1 220px;
@@ -59,4 +79,27 @@ button {
 button:disabled {
   cursor: not-allowed;
   opacity: 0.55;
+}
+
+.historial {
+  margin-top: 1rem;
+}
+
+.capcalera-historial {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.historial h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.historial ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
 }

@@ -17,3 +17,9 @@ export interface EstatTasques {
   tasques: Tasca[];
   error?: string;
 }
+
+export interface CercaDesada {
+  terme: string;
+  categoria: string;
+  data: string;
+}

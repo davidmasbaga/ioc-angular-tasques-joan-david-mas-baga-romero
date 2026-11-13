@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Card } from '../card/card.component';
 import { Tasca } from '../../models/tasca.model';
-import { FiltresTasques, Form } from '../form/form.component';
-import { TascaService } from '../../services/tasca.service';
+import { Form } from '../form/form.component';
+import { CriterisCerca, TascaService } from '../../services/tasca.service';
 
 @Component({
   imports: [Card, Form],
@@ -15,30 +15,15 @@ export class Llista implements OnInit {
 
   readonly estat = this.tascaService.estat;
   titol = 'Les meves tasques';
-  text = '';
-  categoria = '';
   tascaSeleccionada?: Tasca;
-
-  get tasquesFiltrades(): Tasca[] {
-    const textNormalitzat = this.text.toLocaleLowerCase();
-
-    return this.estat().tasques.filter((tasca) => {
-      const coincideixText = !textNormalitzat
-        || tasca.nom.toLocaleLowerCase().includes(textNormalitzat)
-        || tasca.descripcio.toLocaleLowerCase().includes(textNormalitzat);
-      const coincideixCategoria = !this.categoria || tasca.categoria === this.categoria;
-      return coincideixText && coincideixCategoria;
-    });
-  }
 
   ngOnInit(): void {
     this.tascaService.carregarTot();
   }
 
-  filtre(filtres: FiltresTasques): void {
+  filtre(filtres: CriterisCerca): void {
     this.tascaSeleccionada = undefined;
-    this.text = filtres.text;
-    this.categoria = filtres.categoria;
+    this.tascaService.cercar(filtres);
   }
 
   seleccionarTasca(tasca: Tasca): void {

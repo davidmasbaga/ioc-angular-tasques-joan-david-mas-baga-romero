@@ -1,42 +1,64 @@
+<section class="formulari-cerca">
+  <form [formGroup]="formulari" (ngSubmit)="enviar()" aria-label="Cerca de tasques">
+    <div class="camp-formulari">
+      <label for="terme">Cerca per nom o descripció</label>
+      <div class="entrada">
+        <input id="terme" type="search" formControlName="terme" aria-describedby="ajuda-terme" />
+        @if (terme.pending) {
+          <span class="comprovant">Comprovant...</span>
+        }
+        @if (terme.value) {
+          <button type="button" class="netejar" (click)="netejar()" aria-label="Netejar cerca">×</button>
+        }
+      </div>
+      <small id="ajuda-terme">Escriu 3 caràcters com a mínim.</small>
+      @if (mostrarErrors && terme.errors?.['minlength']) {
+        <p class="error" role="alert">Escriu 3 caràcters com a mínim.</p>
+      }
+      @if (mostrarErrors && terme.errors?.['senseResultats']) {
+        <p class="error" role="alert">No hi ha tasques amb aquest terme.</p>
+      }
+    </div>
 
-<form #formulari="ngForm" (ngSubmit)="aplicarFiltre()" novalidate>
-  <div class="camp-formulari">
-    <label for="text">Text de cerca:</label>
-    <input
-      id="text"
-      type="search"
-      name="text"
-      [(ngModel)]="text"
-      required
-      minlength="3"
-      #textCerca="ngModel"
-      [attr.aria-describedby]="textCerca.invalid && textCerca.touched ? 'text-ajuda text-error' : 'text-ajuda'"
-      [attr.aria-invalid]="textCerca.invalid && textCerca.touched"
-    />
-    <small id="text-ajuda">Escriu com a mínim 3 caràcters.</small>
-    @if (textCerca.invalid && textCerca.touched && textCerca.errors?.['minlength']) {
-      <p id="text-error" class="error" role="alert">
-        El text de cerca ha de tenir com a mínim 3 caràcters.
-      </p>
+    <div class="camp-formulari">
+      <label for="categoria">Categoria</label>
+      <select id="categoria" formControlName="categoria">
+        <option value="">Totes</option>
+        <option value="Estudis">Estudis</option>
+        <option value="Feina">Feina</option>
+        <option value="Salut">Salut</option>
+        <option value="Personal">Personal</option>
+        <option value="Oci">Oci</option>
+        <option value="Casa">Casa</option>
+        <option value="Organització">Organització</option>
+      </select>
+    </div>
+
+    <div class="accions">
+      <button type="submit" [disabled]="formulari.invalid || terme.pending">Cercar</button>
+      <button type="button" (click)="netejar()">Netejar</button>
+    </div>
+  </form>
+
+  <section class="historial" aria-labelledby="titol-historial">
+    <div class="capcalera-historial">
+      <h2 id="titol-historial">Cerques recents</h2>
+      @if (historial.historial().length > 0) {
+        <button type="button" (click)="historial.netejar()">Netejar historial</button>
+      }
+    </div>
+    @if (historial.historial().length > 0) {
+      <ul>
+        @for (cerca of historial.historial(); track cerca.data) {
+          <li>
+            <button type="button" (click)="recuperar(cerca)">
+              {{ cerca.terme }} · {{ cerca.categoria || 'Totes' }}
+            </button>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p>No hi ha cerques desades.</p>
     }
-  </div>
-
-  <div class="camp-formulari">
-    <label for="categoria">Categoria:</label>
-    <select id="categoria" name="categoria" [(ngModel)]="categoria">
-      <option value="">Totes</option>
-      <option value="Estudis">Estudis</option>
-      <option value="Feina">Feina</option>
-      <option value="Salut">Salut</option>
-      <option value="Personal">Personal</option>
-      <option value="Oci">Oci</option>
-      <option value="Casa">Casa</option>
-      <option value="Organització">Organització</option>
-    </select>
-  </div>
-
-  <div class="accions">
-    <button type="submit" [disabled]="formulari.invalid">Aplicar filtres</button>
-    <button type="button" (click)="restablir()">Restablir filtres</button>
-  </div>
-</form>
+  </section>
+</section>
