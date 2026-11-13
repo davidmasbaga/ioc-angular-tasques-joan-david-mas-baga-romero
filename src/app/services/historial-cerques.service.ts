@@ -47,7 +47,7 @@ export class HistorialCerquesService {
     try {
       localStorage.setItem(this.clauStorage, JSON.stringify(historial));
     } catch {
-      // Si localStorage no està disponible, l'aplicació continua funcionant.
+      
     }
   }
 

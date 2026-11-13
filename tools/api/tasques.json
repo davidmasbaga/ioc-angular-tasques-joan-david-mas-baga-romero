@@ -89,6 +89,16 @@
       "data": "2026-11-16",
       "prioritat": 3,
       "recurrent": true
+    },
+     {
+      "nom": "tasca creada des de postman",
+      "descripcio": "aquesta tasca l'hem creat des de postman",
+      "categoria": "Estudis",
+      "data": "2026-11-13",
+      "prioritat": 1,
+      "recurrent": true,
+      "id": "aqF9C-_46ls"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
